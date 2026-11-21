@@ -1,0 +1,4 @@
+.env*
+.impeccable
+.next
+node_modules

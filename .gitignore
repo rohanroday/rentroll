@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+!.env.example
+
+# design review screenshots can show tenant names
+/.impeccable/review/
+/.impeccable/mocks/

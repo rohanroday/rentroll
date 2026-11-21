@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T11:33:57.992Z",
+  "title": "Design System: RentRoll",
+  "extensions": {
+    "colorMeta": {
+      "green": {
+        "role": "primary",
+        "displayName": "Bottle Green Enamel",
+        "canonical": "#123d33",
+        "tonalRamp": [
+          "#010f0a",
+          "#012e25",
+          "#244e43",
+          "#467064",
+          "#699487",
+          "#8db9ac",
+          "#b2e0d2",
+          "#ccfaec"
+        ]
+      },
+      "green-2": {
+        "role": "primary",
+        "displayName": "Lifted Enamel Green",
+        "canonical": "#1c5245",
+        "tonalRamp": [
+          "#010f0a",
+          "#002e25",
+          "#195043",
+          "#3d7264",
+          "#619687",
+          "#85bbab",
+          "#abe2d1",
+          "#c5fdec"
+        ]
+      },
+      "green-3": {
+        "role": "primary",
+        "displayName": "Progress Track Green",
+        "canonical": "#2b5a4e",
+        "tonalRamp": [
+          "#000f0a",
+          "#022e25",
+          "#1f4f43",
+          "#427164",
+          "#659587",
+          "#89baac",
+          "#afe1d2",
+          "#c9fbec"
+        ]
+      },
+      "brass": {
+        "role": "secondary",
+        "displayName": "Number-Plate Brass",
+        "canonical": "#e2b13c",
+        "tonalRamp": [
+          "#110a00",
+          "#332401",
+          "#584102",
+          "#816006",
+          "#ac8203",
+          "#d6a62d",
+          "#fecd5c",
+          "#ffedc7"
+        ]
+      },
+      "red": {
+        "role": "tertiary",
+        "displayName": "Signal Red",
+        "canonical": "#b92b19",
+        "tonalRamp": [
+          "#1e0100",
+          "#4e0400",
+          "#830e01",
+          "#b72917",
+          "#e1533f",
+          "#ff8671",
+          "#fec4b9",
+          "#ffe9e4"
+        ]
+      },
+      "enamel": {
+        "role": "neutral",
+        "displayName": "Enamel White",
+        "canonical": "#f3f7f3",
+        "tonalRamp": [
+          "#090c09",
+          "#242724",
+          "#434643",
+          "#646764",
+          "#878a87",
+          "#abafab",
+          "#d1d5d1",
+          "#ecf0ec"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Board Ground",
+        "canonical": "#eef3ef",
+        "tonalRamp": [
+          "#090c0a",
+          "#242825",
+          "#424643",
+          "#636764",
+          "#868a87",
+          "#abafac",
+          "#d1d6d2",
+          "#ebf0ec"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Plate White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#262626",
+          "#454545",
+          "#666666",
+          "#898989",
+          "#aeaeae",
+          "#d4d4d4",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Board Ink",
+        "canonical": "#10231e",
+        "tonalRamp": [
+          "#000f0a",
+          "#182b26",
+          "#364a44",
+          "#566b65",
+          "#798f88",
+          "#9db4ad",
+          "#c3dad3",
+          "#ddf5ed"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Weathered Ink",
+        "canonical": "#3f5850",
+        "tonalRamp": [
+          "#010f0a",
+          "#142c25",
+          "#324b43",
+          "#536d64",
+          "#759087",
+          "#9ab5ac",
+          "#bfdcd2",
+          "#d9f6ec"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline Sage",
+        "canonical": "#c3d3ca",
+        "tonalRamp": [
+          "#040e08",
+          "#1d2a23",
+          "#3b4941",
+          "#5c6a62",
+          "#7e8d85",
+          "#a3b2aa",
+          "#c9d9d0",
+          "#e3f3ea"
+        ]
+      },
+      "ok-bg": {
+        "role": "neutral",
+        "displayName": "Settled Green Wash",
+        "canonical": "#dfeee6",
+        "tonalRamp": [
+          "#040e09",
+          "#1e2924",
+          "#3c4842",
+          "#5d6a63",
+          "#7f8d86",
+          "#a4b2aa",
+          "#cad8d1",
+          "#e4f3eb"
+        ]
+      },
+      "muted-plate": {
+        "role": "neutral",
+        "displayName": "Paid Plate Sage",
+        "canonical": "#dce8e1",
+        "tonalRamp": [
+          "#060d09",
+          "#202924",
+          "#3e4842",
+          "#5f6963",
+          "#818c86",
+          "#a6b1ab",
+          "#ccd8d1",
+          "#e6f2eb"
+        ]
+      },
+      "muted-edge": {
+        "role": "neutral",
+        "displayName": "Muted Edge Sage",
+        "canonical": "#76948a",
+        "tonalRamp": [
+          "#000f09",
+          "#122c23",
+          "#314c41",
+          "#526d62",
+          "#749185",
+          "#98b6a9",
+          "#beddd0",
+          "#d8f7ea"
+        ]
+      },
+      "paid-tag": {
+        "role": "neutral",
+        "displayName": "Paid Tag Slate",
+        "canonical": "#547166",
+        "tonalRamp": [
+          "#010f09",
+          "#112c23",
+          "#304c42",
+          "#516d62",
+          "#739185",
+          "#97b6aa",
+          "#bdddd0",
+          "#d7f7ea"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The amount still to collect. One per screen."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "The balance on a tenant card."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings and tenant names on plates."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text and field values."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, property tabs and supporting header lines."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Button text, at 1rem or 0.9375rem when small."
+      },
+      "action-small": {
+        "displayName": "Action Small",
+        "purpose": "Compact button text."
+      },
+      "number": {
+        "displayName": "Number",
+        "purpose": "Room numbers on brass tags."
+      },
+      "status": {
+        "displayName": "Status",
+        "purpose": "The plate's status line."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Phone tab labels and the property name on a plate."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plate-lift",
+        "value": "0 3px 10px rgb(18 61 51 / .2)",
+        "purpose": "Hover on a tappable plate."
+      },
+      {
+        "name": "floating-notice",
+        "value": "0 4px 14px rgb(18 61 51 / .28)",
+        "purpose": "The payment confirmation above the tab bar."
+      },
+      {
+        "name": "settle-flash",
+        "value": "0 0 0 7px #e2b13c",
+        "purpose": "Start of the settle animation on a plate that just changed."
+      },
+      {
+        "name": "field-focus",
+        "value": "0 0 0 2px #e2b13c",
+        "purpose": "Supplementary halo around a focused field whose green stroke carries focus."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Plate press, progress and settle."
+      },
+      {
+        "name": "state",
+        "value": "150ms",
+        "purpose": "Color, border and press transitions."
+      },
+      {
+        "name": "progress",
+        "value": "400ms",
+        "purpose": "Collection bar width."
+      },
+      {
+        "name": "plate-settle",
+        "value": "700ms",
+        "purpose": "Plate confirmation after a payment. Removed under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "plates-auto",
+        "value": "560px"
+      },
+      {
+        "name": "rail",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Room Plate: Overdue",
+      "kind": "card",
+      "refersTo": "plate-overdue",
+      "description": "Solid red plate. Overdue rent only, always with the alert icon and days late.",
+      "html": "<a class=\"ds-plate ds-plate-overdue\" href=\"#\"><span class=\"ds-plate-no\">101</span><span class=\"ds-plate-name\">Tenant name</span><span class=\"ds-plate-amount\">₹10,000</span><span class=\"ds-plate-status\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 4 2.8 20h18.4z\"/><path d=\"M12 10v4.5M12 17.5v.01\"/></svg>9 days late</span></a>",
+      "css": ".ds-plate{min-height:132px;display:flex;flex-direction:column;align-items:flex-start;padding:10px 11px;background:var(--white);color:var(--ink);border:2px solid var(--green);border-radius:var(--radius);text-decoration:none;font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;transition:transform .15s var(--ease),box-shadow .15s}a.ds-plate:hover{box-shadow:0 3px 10px rgb(18 61 51 / .2)}a.ds-plate:active{transform:scale(.98)}a.ds-plate:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-plate-no{padding:0 7px;background:var(--brass);color:var(--ink);border-radius:3px;font-size:.9375rem;font-weight:700;font-variant-numeric:tabular-nums}.ds-plate-name{margin-top:6px;font-size:1.125rem;line-height:1.2;font-weight:700}.ds-plate-amount{font-size:.9375rem;font-variant-numeric:tabular-nums}.ds-plate-status{margin-top:auto;padding-top:4px;display:inline-flex;align-items:center;gap:4px;font-size:.875rem;font-weight:700}.ds-plate-overdue{background:var(--red);border-color:var(--red);color:var(--white)}.ds-plate-overdue .ds-plate-no{background:var(--white);color:var(--red)}"
+    },
+    {
+      "name": "Room Plate: Due Today",
+      "kind": "card",
+      "refersTo": "plate-today",
+      "description": "Heavy 4px brass edge with the status in words.",
+      "html": "<a class=\"ds-plate ds-plate-today\" href=\"#\"><span class=\"ds-plate-no\">102</span><span class=\"ds-plate-name\">Tenant name</span><span class=\"ds-plate-amount\">₹10,000</span><span class=\"ds-plate-status\">Due today</span></a>",
+      "css": ".ds-plate{min-height:132px;display:flex;flex-direction:column;align-items:flex-start;padding:10px 11px;background:var(--white);color:var(--ink);border:2px solid var(--green);border-radius:var(--radius);text-decoration:none;font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;transition:transform .15s var(--ease),box-shadow .15s}a.ds-plate:hover{box-shadow:0 3px 10px rgb(18 61 51 / .2)}a.ds-plate:active{transform:scale(.98)}a.ds-plate:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-plate-no{padding:0 7px;background:var(--brass);color:var(--ink);border-radius:3px;font-size:.9375rem;font-weight:700;font-variant-numeric:tabular-nums}.ds-plate-name{margin-top:6px;font-size:1.125rem;line-height:1.2;font-weight:700}.ds-plate-amount{font-size:.9375rem;font-variant-numeric:tabular-nums}.ds-plate-status{margin-top:auto;padding-top:4px;display:inline-flex;align-items:center;gap:4px;font-size:.875rem;font-weight:700}.ds-plate-today{border-width:4px;border-color:var(--brass);padding:8px 9px}"
+    },
+    {
+      "name": "Room Plate: Part Paid",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "Dashed edge showing the balance left.",
+      "html": "<a class=\"ds-plate ds-plate-part\" href=\"#\"><span class=\"ds-plate-no\">103</span><span class=\"ds-plate-name\">Tenant name</span><span class=\"ds-plate-amount\">₹3,000 left</span><span class=\"ds-plate-status\">Part paid</span></a>",
+      "css": ".ds-plate{min-height:132px;display:flex;flex-direction:column;align-items:flex-start;padding:10px 11px;background:var(--white);color:var(--ink);border:2px solid var(--green);border-radius:var(--radius);text-decoration:none;font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;transition:transform .15s var(--ease),box-shadow .15s}a.ds-plate:hover{box-shadow:0 3px 10px rgb(18 61 51 / .2)}a.ds-plate:active{transform:scale(.98)}a.ds-plate:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-plate-no{padding:0 7px;background:var(--brass);color:var(--ink);border-radius:3px;font-size:.9375rem;font-weight:700;font-variant-numeric:tabular-nums}.ds-plate-name{margin-top:6px;font-size:1.125rem;line-height:1.2;font-weight:700}.ds-plate-amount{font-size:.9375rem;font-variant-numeric:tabular-nums}.ds-plate-status{margin-top:auto;padding-top:4px;display:inline-flex;align-items:center;gap:4px;font-size:.875rem;font-weight:700}.ds-plate-part{border-style:dashed}"
+    },
+    {
+      "name": "Room Plate: Paid",
+      "kind": "card",
+      "refersTo": "plate-paid",
+      "description": "Muted, settled plate with a check.",
+      "html": "<a class=\"ds-plate ds-plate-paid\" href=\"#\"><span class=\"ds-plate-no\">104</span><span class=\"ds-plate-name\">Tenant name</span><span class=\"ds-plate-amount\">₹10,000</span><span class=\"ds-plate-status\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg>Paid</span></a>",
+      "css": ".ds-plate{min-height:132px;display:flex;flex-direction:column;align-items:flex-start;padding:10px 11px;background:var(--white);color:var(--ink);border:2px solid var(--green);border-radius:var(--radius);text-decoration:none;font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;transition:transform .15s var(--ease),box-shadow .15s}a.ds-plate:hover{box-shadow:0 3px 10px rgb(18 61 51 / .2)}a.ds-plate:active{transform:scale(.98)}a.ds-plate:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-plate-no{padding:0 7px;background:var(--brass);color:var(--ink);border-radius:3px;font-size:.9375rem;font-weight:700;font-variant-numeric:tabular-nums}.ds-plate-name{margin-top:6px;font-size:1.125rem;line-height:1.2;font-weight:700}.ds-plate-amount{font-size:.9375rem;font-variant-numeric:tabular-nums}.ds-plate-status{margin-top:auto;padding-top:4px;display:inline-flex;align-items:center;gap:4px;font-size:.875rem;font-weight:700}.ds-plate-paid{background:var(--muted-plate);border-color:var(--muted-edge)}.ds-plate-paid .ds-plate-no{background:#547166;color:var(--white)}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The confirming action on a screen.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Confirm payment</button>",
+      "css": ".ds-btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 18px;border:2px solid transparent;border-radius:var(--radius);font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s,opacity .15s}.ds-btn:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-btn:disabled{opacity:.6;cursor:wait}.ds-btn-primary{background:var(--green);color:var(--enamel)}.ds-btn-primary:hover:not(:disabled){background:var(--green-2)}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Supporting actions such as adding or editing.",
+      "html": "<button class=\"ds-btn ds-btn-secondary\">Edit details</button>",
+      "css": ".ds-btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 18px;border:2px solid transparent;border-radius:var(--radius);font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s,opacity .15s}.ds-btn:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-btn:disabled{opacity:.6;cursor:wait}.ds-btn-secondary{background:var(--white);border-color:var(--green);color:var(--green)}.ds-btn-secondary:hover:not(:disabled){background:var(--ok-bg)}"
+    },
+    {
+      "name": "Destructive Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Destructive actions in ink, keeping red for overdue.",
+      "html": "<button class=\"ds-btn ds-btn-danger\">Remove</button>",
+      "css": ".ds-btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 18px;border:2px solid transparent;border-radius:var(--radius);font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s,opacity .15s}.ds-btn:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-btn:disabled{opacity:.6;cursor:wait}.ds-btn-danger{background:var(--white);border-color:var(--ink);color:var(--ink)}.ds-btn-danger:hover:not(:disabled){background:var(--muted-plate)}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Labelled 48px field. The shipped resting stroke measures 2.97:1 on white; new control boundaries should reach 3:1.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Amount received</span><input class=\"ds-input\" inputmode=\"numeric\" value=\"10,000\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:4px;font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;color:var(--ink)}.ds-field-label{font-size:.9375rem;font-weight:600}.ds-input{width:100%;min-height:48px;padding:8px 12px;background:var(--white);color:var(--ink);border:1px solid var(--muted-edge);border-radius:var(--radius);font:inherit;font-size:1rem;caret-color:var(--green);transition:border-color .15s,box-shadow .15s}.ds-input:hover{border-color:var(--green)}.ds-input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 2px var(--brass)}"
+    },
+    {
+      "name": "Property Tabs",
+      "kind": "chip",
+      "refersTo": "property-tab",
+      "description": "Pill filter between properties.",
+      "html": "<div class=\"ds-tabs\"><a class=\"ds-tab ds-tab-active\" href=\"#\" aria-current=\"true\">All</a><a class=\"ds-tab\" href=\"#\">Property name</a></div>",
+      "css": ".ds-tabs{display:flex;gap:8px}.ds-tab{min-height:40px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--line);border-radius:20px;background:var(--white);color:var(--ink);font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;font-size:.9375rem;font-weight:600;text-decoration:none}.ds-tab:focus-visible{outline:3px solid var(--green);outline-offset:2px}.ds-tab-active{background:var(--green);border-color:var(--green);color:var(--enamel)}"
+    },
+    {
+      "name": "Phone Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Bottom tab bar. The active tab takes a 3px green top bar.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Example\"><a class=\"ds-nav-item\" aria-current=\"page\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"1.5\"/><path d=\"M9 7h1M14 7h1M9 11h1M14 11h1M10 21v-5h4v5\"/></svg><span>Rooms</span></a><a class=\"ds-nav-item\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 3h12v18l-3-2-3 2-3-2-3 2z\"/><path d=\"M9.5 8h5M9.5 12h5\"/></svg><span>Payments</span></a></nav>",
+      "css": ".ds-nav{display:grid;grid-template-columns:repeat(2,1fr);background:var(--white);border-top:1px solid var(--line)}.ds-nav-item{min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--ink-2);font-family:var(--font-hind),\"Noto Sans Devanagari\",system-ui,sans-serif;font-size:.8125rem;font-weight:600;text-decoration:none;transition:color .15s}.ds-nav-item:hover{color:var(--green)}.ds-nav-item:focus-visible{outline:3px solid var(--green);outline-offset:-3px}.ds-nav-item[aria-current=\"page\"]{color:var(--green);box-shadow:inset 0 3px 0 var(--green)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Society Name Board",
+    "overview": "RentRoll is the painted resident board from a building's entrance, made live. A bottle-green enamel shell holds white plates, each with a brass room number, and the board reads at a glance because every plate's form says where that room's rent stands.\n\nThe system is dense but calm, built for a phone held in one hand in bright daylight. One typeface carries everything, money figures are the loudest type, and color stays scarce enough that a red plate means something the moment it appears. Plates sit flat like painted metal and only respond when touched.",
+    "keyCharacteristics": [
+      "Bottle-green shell, enamel-white plates, brass number tags.",
+      "Status told by plate form and words, with color as reinforcement.",
+      "Hind at every level, with tabular rupee figures.",
+      "Flat at rest, with depth reserved for touch and floating confirmation.",
+      "Bottom tabs on phones, a green side rail from 900px."
+    ],
+    "rules": [
+      {
+        "name": "The Red Means Late Rule",
+        "body": "Signal Red marks overdue rent and nothing else. Errors and destructive actions use Board Ink with a heavy edge, so red never loses its meaning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Brass Is Never Text On White Rule",
+        "body": "Brass carries ink on top of it, or sits on green. It never sets words on a light surface.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Money Rule",
+        "body": "Every rupee figure and room number uses tabular numerals so amounts compare cleanly down a column.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Hind carries all interface type. Email alone falls back to Arial, because mail clients cannot load it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Painted Metal Rule",
+        "body": "Plates carry no shadow at rest. If a plate needs more emphasis, change its form.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Plate Form Rule",
+        "body": "Overdue is a solid red plate. Due today is a 4px brass edge. Part paid is a dashed edge. Paid is a muted plate with a check. Vacant is a transparent plate with a dotted edge. Each state must stay identifiable without color, and always carries its status in words.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do show every rent state through plate form and words as well as color.",
+      "Do sort rent views by urgency, with overdue first.",
+      "Do use tabular numerals for every rupee figure and room number.",
+      "Do set text on brass in Board Ink.",
+      "Do keep main actions and fields at 48px and give new tap targets at least 40px.",
+      "Do give any new control boundary at least 3:1 contrast against its surface, for daylight legibility.",
+      "Do honor reduced motion by removing the settle flash and transitions."
+    ],
+    "donts": [
+      "Don't use Signal Red for errors, destructive actions, or anything except overdue rent.",
+      "Don't set words in brass on white or Board Ground.",
+      "Don't add shadows to plates at rest.",
+      "Don't reuse dashed or dotted edges decoratively, because they mean part paid and vacant.",
+      "Don't lead the rent board with summary cards over a table.",
+      "Don't introduce a second typeface into the interface."
+    ]
+  }
+}
