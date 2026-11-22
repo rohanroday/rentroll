@@ -1,102 +1,131 @@
 ---
 name: RentRoll
-description: A painted resident board, made live, that shows which rooms have paid.
+description: A calm rent dashboard that shows who owes what before anything else.
 colors:
-  green: "#123d33"
-  green-2: "#1c5245"
-  green-3: "#2b5a4e"
-  brass: "#e2b13c"
-  red: "#b92b19"
-  enamel: "#f3f7f3"
-  ground: "#eef3ef"
+  green: "#005536"
+  green-2: "#027246"
+  green-3: "#1d7a5b"
+  side: "#083d36"
+  side-2: "#002b23"
+  side-text: "#e4f3eb"
+  mint: "#dff3e7"
+  mint-2: "#eef8f2"
+  mint-disc: "#a6e3bf"
+  chart-green: "#34b36f"
+  amber: "#e9a820"
+  amber-ink: "#7d5200"
+  amber-bg: "#fff5de"
+  amber-icon: "#ffe9b8"
+  chart-amber: "#f4c542"
+  red: "#c4302b"
+  red-ink: "#9f2622"
+  red-bg: "#fdecea"
+  ground: "#f4f8f6"
   white: "#ffffff"
   ink: "#10231e"
-  ink-2: "#3f5850"
-  line: "#c3d3ca"
-  ok-bg: "#dfeee6"
-  muted-plate: "#dce8e1"
-  muted-edge: "#76948a"
-  paid-tag: "#547166"
+  ink-2: "#4a5f58"
+  line: "#dde7e2"
+  edge: "#76948a"
+  slate-bg: "#eef1f3"
+  slate-ink: "#36474f"
 typography:
   display:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
-    fontSize: "2.625rem"
-    fontWeight: 700
-    lineHeight: 1.05
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 11vw, 3.75rem)"
+    fontWeight: 800
+    lineHeight: 1.04
+    letterSpacing: "-0.035em"
+  headline:
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "clamp(1.75rem, 6vw, 2.5rem)"
+    fontWeight: 800
+    lineHeight: 1.1
+    letterSpacing: "-0.03em"
+  page-title:
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "1.625rem"
+    fontWeight: 800
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  figure:
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "2rem"
+    fontWeight: 800
+    lineHeight: 1.1
     letterSpacing: "-0.01em"
     fontFeature: "tnum"
-  figure:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
-    fontSize: "2rem"
-    fontWeight: 700
-    lineHeight: 1.1
+  tile-figure:
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "1.0625rem"
+    fontWeight: 800
+    lineHeight: 1.2
+    letterSpacing: "-0.01em"
     fontFeature: "tnum"
-  headline:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
-    fontSize: "1.5rem"
-    fontWeight: 700
-    lineHeight: 1.15
   title:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
+    fontFamily: "Figtree, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 700
-    lineHeight: 1.2
+    lineHeight: 1.25
+    letterSpacing: "-0.01em"
   body:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
+    fontFamily: "Figtree, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.45
-  label:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
+    lineHeight: 1.5
+  body-small:
+    fontFamily: "Figtree, system-ui, sans-serif"
     fontSize: "0.9375rem"
-    fontWeight: 600
-    lineHeight: 1.45
+    fontWeight: 400
+    lineHeight: 1.5
   action:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
+    fontFamily: "Figtree, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 700
-    lineHeight: 1.45
+    lineHeight: 1.5
   action-small:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
-    fontSize: "0.9375rem"
-    fontWeight: 700
-    lineHeight: 1.45
-  number:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
-    fontSize: "0.9375rem"
-    fontWeight: 700
-    lineHeight: 1.45
-    fontFeature: "tnum"
-  status:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
+    fontFamily: "Figtree, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 700
-    lineHeight: 1.45
+    lineHeight: 1.5
+  label:
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 700
+    lineHeight: 1.5
   caption:
-    fontFamily: "Hind, Noto Sans Devanagari, system-ui, sans-serif"
+    fontFamily: "Figtree, system-ui, sans-serif"
     fontSize: "0.8125rem"
     fontWeight: 600
-    lineHeight: 1.45
+    lineHeight: 1.5
+  micro:
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 600
+    lineHeight: 1.5
 rounded:
-  tag: "3px"
-  bar: "4px"
-  plate: "6px"
+  tag: "6px"
+  tab: "8px"
+  control: "10px"
+  card: "14px"
+  showcase: "18px"
   pill: "20px"
+  circle: "50%"
 spacing:
   xs: "4px"
   sm: "8px"
-  plate-gap: "10px"
+  tile-gap: "10px"
   md: "12px"
   lg: "16px"
   xl: "20px"
   2xl: "24px"
+  section: "52px"
 components:
   button-primary:
     backgroundColor: "{colors.green}"
-    textColor: "{colors.enamel}"
+    textColor: "{colors.white}"
     typography: "{typography.action}"
-    rounded: "{rounded.plate}"
-    padding: "8px 18px"
+    rounded: "{rounded.control}"
+    padding: "8px 20px"
     height: "48px"
   button-primary-hover:
     backgroundColor: "{colors.green-2}"
@@ -104,242 +133,304 @@ components:
     backgroundColor: "{colors.white}"
     textColor: "{colors.green}"
     typography: "{typography.action}"
-    rounded: "{rounded.plate}"
-    padding: "8px 18px"
+    rounded: "{rounded.control}"
+    padding: "8px 20px"
     height: "48px"
   button-secondary-hover:
-    backgroundColor: "{colors.ok-bg}"
-  button-danger:
+    backgroundColor: "{colors.mint-2}"
+  button-destructive:
     backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
     typography: "{typography.action}"
-    rounded: "{rounded.plate}"
-    padding: "8px 18px"
+    rounded: "{rounded.control}"
+    padding: "8px 20px"
     height: "48px"
-  button-danger-hover:
-    backgroundColor: "{colors.muted-plate}"
+  button-destructive-hover:
+    backgroundColor: "{colors.slate-bg}"
   button-small:
     typography: "{typography.action-small}"
-    padding: "4px 12px"
-    height: "40px"
+    padding: "4px 14px"
+    height: "44px"
   input:
     backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
     typography: "{typography.body}"
-    rounded: "{rounded.plate}"
-    padding: "8px 12px"
+    rounded: "{rounded.control}"
+    padding: "8px 14px"
     height: "48px"
-  plate:
+  card:
     backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.plate}"
-    padding: "10px 11px"
-    height: "132px"
-  plate-overdue:
+    rounded: "{rounded.card}"
+    padding: "16px"
+  tile-collected:
+    backgroundColor: "{colors.mint-2}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "10px"
+  tile-due:
+    backgroundColor: "{colors.amber-bg}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "10px"
+  tile-overdue:
+    backgroundColor: "{colors.red-bg}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "10px"
+  tile-expected:
+    backgroundColor: "{colors.slate-bg}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "10px"
+  room-card:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "12px"
+  room-card-overdue:
+    backgroundColor: "{colors.red-bg}"
+    textColor: "{colors.ink}"
+  room-card-today:
+    backgroundColor: "{colors.amber-bg}"
+    textColor: "{colors.ink}"
+  room-card-paid:
+    backgroundColor: "{colors.mint-2}"
+    textColor: "{colors.ink}"
+  room-number:
+    backgroundColor: "{colors.mint}"
+    textColor: "{colors.green}"
+    typography: "{typography.label}"
+    rounded: "{rounded.tag}"
+    padding: "1px 8px"
+  room-number-overdue:
     backgroundColor: "{colors.red}"
     textColor: "{colors.white}"
-  plate-today:
+  property-chip:
     backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
-    padding: "8px 9px"
-  plate-paid:
-    backgroundColor: "{colors.muted-plate}"
-    textColor: "{colors.ink}"
-  number-tag:
-    backgroundColor: "{colors.brass}"
-    textColor: "{colors.ink}"
-    typography: "{typography.number}"
-    rounded: "{rounded.tag}"
-    padding: "0 7px"
-  number-tag-overdue:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.red}"
-  number-tag-paid:
-    backgroundColor: "{colors.paid-tag}"
-    textColor: "{colors.white}"
-  property-tab:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
+    typography: "{typography.body-small}"
     rounded: "{rounded.pill}"
-    padding: "0 14px"
+    padding: "0 16px"
     height: "40px"
-  property-tab-active:
+  property-chip-active:
     backgroundColor: "{colors.green}"
-    textColor: "{colors.enamel}"
-  notice-ok:
-    backgroundColor: "{colors.ok-bg}"
+    textColor: "{colors.white}"
+  due-tab:
+    backgroundColor: "{colors.slate-bg}"
+    textColor: "{colors.ink-2}"
+    typography: "{typography.caption}"
+    rounded: "{rounded.tab}"
+    height: "44px"
+  due-tab-active:
+    backgroundColor: "{colors.mint}"
     textColor: "{colors.green}"
-    rounded: "{rounded.plate}"
-    padding: "10px 12px"
-  panel:
+  due-tab-overdue-active:
+    backgroundColor: "{colors.red-bg}"
+    textColor: "{colors.red-ink}"
+  notice-ok:
+    backgroundColor: "{colors.mint}"
+    textColor: "{colors.green}"
+    rounded: "{rounded.control}"
+    padding: "11px 14px"
+  notice-error:
     backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.plate}"
-    padding: "16px"
+    rounded: "{rounded.control}"
+    padding: "11px 14px"
 ---
 
 # Design System: RentRoll
 
 ## Overview
 
-**Creative North Star: "The Society Name Board"**
+**Creative North Star: "The Morning Rent Ledger"**
 
-RentRoll is the painted resident board from a building's entrance, made live. A bottle-green enamel shell holds white plates, each with a brass room number, and the board reads at a glance because every plate's form says where that room's rent stands.
+RentRoll is the calm first look at the day's money. A deep green frame holds white cards on a pale mint ground, and the first thing on any rent screen is who has paid, who is due and who is late. The tone is trustworthy and unhurried, so a landlord can read it between other tasks on a mid-range phone in daylight.
 
-The system is dense but calm, built for a phone held in one hand in bright daylight. One typeface carries everything, money figures are the loudest type, and color stays scarce enough that a red plate means something the moment it appears. Plates sit flat like painted metal and only respond when touched.
+Density stays moderate. Tinted summary tiles give the headline numbers, a single list names the people to act on, and room cards hold the full picture below. Soft shadows and rounded corners make the product feel approachable, while strict status color keeps it serious about money.
+
+The public landing page speaks in the same materials at a larger scale. It may use a tilted sample phone and a large mint disc to persuade. The logged-in app stays square to the grid and spends its emphasis on rent status.
 
 **Key Characteristics:**
-- Bottle-green shell, enamel-white plates, brass number tags.
-- Status told by plate form and words, with color as reinforcement.
-- Hind at every level, with tabular rupee figures.
-- Flat at rest, with depth reserved for touch and floating confirmation.
-- Bottom tabs on phones, a green side rail from 900px.
+- Deep green sidebar and primary actions on a pale mint ground.
+- White cards with soft green-tinted shadows and 14px corners.
+- Mint, amber, red and slate summary tiles.
+- Figtree at every level, with tabular rupee figures.
+- Status always stated in words, with red kept for overdue money.
+- Bottom tabs on phones, a green sidebar from 900px.
 
 ## Colors
 
-A deep green and painted-metal palette with one warm metal accent and one alarm color.
+A green and mint palette with two working status colors, amber for due now and red for overdue.
 
 ### Primary
-- **Bottle Green Enamel** (#123d33): The shell. Board header, desktop rail, login ground, primary buttons, selected tabs, default plate edges and the global focus ring.
-- **Lifted Enamel Green** (#1c5245): Hover on green surfaces.
-- **Progress Track Green** (#2b5a4e): The unfilled track of the collection bar on the green header.
+- **Deep Ledger Green** (#005536): Primary buttons, selected property chips, selected choices, logo text, links and active labels on light surfaces.
+- **Lifted Green** (#027246): Primary hover, the active sidebar item, secondary button outlines and icons on mint.
+- **Focus Green** (#1d7a5b): The global focus ring, field hover and focus strokes, small checks and arrows.
+- **Sidebar Pine** (#083d36) into **Night Pine** (#002b23): The vertical gradient on the desktop sidebar and login brand panel, and the horizontal band of the landing's closing call to action.
+- **Sidebar Text** (#e4f3eb): Resting navigation labels on pine.
 
 ### Secondary
-- **Number-Plate Brass** (#e2b13c): Room number tags, the collected portion of the progress bar, the month, the due-today edge, focus on green surfaces and the settle flash after a payment.
+- **Soft Mint** (#dff3e7): Selection, room number tags, icon circles, success notices, the active due tab and the field focus halo.
+- **Mint Wash** (#eef8f2): Collected tiles, paid room cards, feature cards and quiet green hover.
+- **Mint Disc** (#a6e3bf): The large circle behind the landing's sample phone. Landing only.
+- **Chart Green** (#34b36f): The collected portion of the chart, its legend dot, the headline underline and the payment settle ring.
 
 ### Tertiary
-- **Signal Red** (#b92b19): Overdue only. The overdue plate, the overdue tenant card and the overdue reminder in email.
+- **Due Amber** (#e9a820): The due-today room card edge and focus rings on dark green surfaces. Never text.
+- **Amber Ink** (#7d5200): Text and icons on amber tints.
+- **Amber Wash** (#fff5de): Due-today tiles and room cards.
+- **Amber Circle** (#ffe9b8): Icon circles and number tags on amber tints.
+- **Chart Amber** (#f4c542): The pending chart segment and legend dot.
+- **Overdue Red** (#c4302b): Overdue figures, tags, card edges, chart segment and the overdue tenant card.
+- **Overdue Ink** (#9f2622): Overdue words on the red tint.
+- **Overdue Wash** (#fdecea): Overdue tiles, room cards and the active overdue tab.
 
 ### Neutral
-- **Enamel White** (#f3f7f3): Text on green.
-- **Board Ground** (#eef3ef): The page behind the plates.
-- **Plate White** (#ffffff): Plates, panels, lists, fields and text on red.
-- **Board Ink** (#10231e): Primary text, and the text on brass.
-- **Weathered Ink** (#3f5850): Secondary text, hints and inactive tab labels.
-- **Hairline Sage** (#c3d3ca): Dividers and panel, list and tab outlines. Decorative separation only.
-- **Settled Green Wash** (#dfeee6): Success notices and secondary button hover.
-- **Paid Plate Sage** (#dce8e1): The settled plate and quiet button hover.
-- **Muted Edge Sage** (#76948a): Paid and vacant plate edges, and the resting stroke on fields.
-- **Paid Tag Slate** (#547166): The number tag on a paid plate, dark enough to hold white text.
+- **Pale Mint Ground** (#f4f8f6): The app background and tinted landing sections.
+- **Card White** (#ffffff): Cards, fields, lists, the landing page and text on green or red.
+- **Ledger Ink** (#10231e): Primary text, and the frame of errors and destructive actions.
+- **Quiet Ink** (#4a5f58): Secondary text, hints, inactive tabs and resting bottom navigation.
+- **Hairline** (#dde7e2): Decorative dividers and card outlines only.
+- **Control Edge** (#76948a): Resting field strokes, choice tiles, and dashed part-paid and vacant room edges.
+- **Slate Wash** (#eef1f3): The Total Expected tile, inactive due tabs, avatars and the chart track.
+- **Slate Ink** (#36474f): Text and icons on slate.
 
 ### Named Rules
-**The Red Means Late Rule.** Signal Red marks overdue rent and nothing else. Errors and destructive actions use Board Ink with a heavy edge, so red never loses its meaning.
+**The Red Means Overdue Rule.** Red marks overdue money and nothing else. Errors and destructive actions use Ledger Ink with a heavy edge, so red never loses its meaning.
 
-**The Brass Is Never Text On White Rule.** Brass carries ink on top of it, or sits on green. It never sets words on a light surface.
+**The Amber Is Not Text Rule.** Due Amber draws edges and focus rings. Words on an amber tint use Amber Ink.
 
 ## Typography
 
-**Display Font:** Hind (with Noto Sans Devanagari, system-ui, sans-serif)
-**Body Font:** Hind
-**Label/Mono Font:** Hind, with tabular numerals for money and room numbers
+**Display Font:** Figtree (with system-ui, sans-serif)
+**Body Font:** Figtree
+**Label/Mono Font:** Figtree, with tabular numerals for money and room numbers
 
-**Character:** A plain, sturdy humanist sans with Latin and Devanagari coverage. Hierarchy comes from size and weight alone, and sentence case stays friendly to non-technical readers.
+**Character:** A friendly geometric sans that stays clear at small sizes. Heavy weights and tight tracking give headlines confidence, while sentence-level copy stays plain for non-technical readers.
 
 ### Hierarchy
-- **Display** (700, 2.625rem, 1.05, -0.01em, tabular): The amount still to collect. One per screen.
-- **Figure** (700, 2rem, 1.1, tabular): The balance on a tenant card.
-- **Headline** (700, 1.5rem, 1.15): Page titles, balanced on wrap.
-- **Title** (700, 1.125rem, 1.2): Section headings and tenant names on plates, clamped to two lines.
-- **Body** (400, 1rem, 1.45): Default text and field values.
-- **Label** (600, 0.9375rem): Field labels, property tabs and supporting header lines.
-- **Action** (700, 1rem; 0.9375rem when small): Button text.
-- **Number** (700, 0.9375rem, tabular): Room numbers on brass tags.
-- **Status** (700, 0.875rem): The plate's status line.
-- **Caption** (600, 0.8125rem): Phone tab labels and the property name on a plate. The smallest size in the app.
+- **Display** (800, clamp(2.5rem, 11vw, 3.75rem), 1.04, -0.035em): The landing headline only.
+- **Headline** (800, clamp(1.75rem, 6vw, 2.5rem), 1.1, -0.03em): Landing section headings, balanced on wrap.
+- **Page Title** (800, 1.625rem rising to 1.75rem from 900px, 1.15, -0.02em): Logged-in page titles.
+- **Figure** (800, 2rem, 1.1, tabular): The balance on a tenant card.
+- **Tile Figure** (800, 1.0625rem rising to 1.25rem from 720px, 1.2, tabular): Summary tile amounts.
+- **Title** (700, 1.125rem, 1.25, -0.01em): Card and section headings.
+- **Body** (400, 1rem, 1.5): Default text and field values. Long answers cap at 65ch.
+- **Body Small** (400, 0.9375rem, 1.5): Supporting lines and notices.
+- **Action** (700, 1rem; 0.875rem when small): Button text.
+- **Label** (700, 0.875rem): Field labels and room numbers.
+- **Caption** (600, 0.8125rem): Tile labels, row details and room status.
+- **Micro** (600, 0.75rem): Phone tab labels and property names on room cards. The smallest live app text.
 
 ### Named Rules
-**The Tabular Money Rule.** Every rupee figure and room number uses tabular numerals so amounts compare cleanly down a column.
+**The Tabular Money Rule.** Every live rupee figure and room number uses tabular numerals so amounts compare cleanly down a column.
 
-**The One Family Rule.** Hind carries all interface type. Email alone falls back to Arial, because mail clients cannot load it.
+**The One Family Rule.** Figtree carries all interface type. Email alone uses Arial, deliberately, because mail clients cannot rely on web fonts.
 
 ## Layout
 
-The board is a responsive grid of plates under a full-width green header. Phones show two columns with a 10px gap. From 560px, columns auto-fill at a 170px minimum. Content is capped at 1120px with 16px gutters, widening to 24px on desktop. Forms and focused tasks narrow to 560px.
+The app is phone first. Content is capped at 1180px with 16px gutters, widening to 28px from 900px. Focused forms narrow to 600px.
 
-Navigation is a fixed four-item bottom bar on phones, respecting the safe area, and becomes a 208px green side rail at 900px. Plates sort by urgency: overdue, due today, then upcoming and part paid, with paid last.
+The dashboard reads top to bottom: greeting, summary tiles, Rent Due List, Collection Summary, then all rooms. Tiles run two across on phones and four across from 720px. The list and summary sit side by side from 1040px at roughly 1.55 to 1. Room cards run two across on phones and auto-fill at a 180px minimum from 560px.
 
-Spacing follows a tight 4, 8, 10, 12, 16, 20 and 24px rhythm. Main actions and fields are 48px, with compact buttons and property tabs at 40px.
+Navigation is a fixed four-item bottom bar on phones, respecting the safe area, and becomes a 232px sidebar at 900px. Login screens stack a compact pine brand band over the form on phones and become a 42% brand panel beside the form on desktop.
+
+The landing page uses the same 1180px container with 20px gutters. Its hero is one column on phones and two columns from 960px, with 52px section padding.
+
+Spacing follows a 4, 8, 10, 12, 16, 20 and 24px rhythm. Main actions and fields are 48px, row actions and due tabs are 44px, and property chips are 40px.
 
 ## Elevation & Depth
 
-The system is flat at rest. Depth comes from the tonal step between ground, plate and shell, and from heavy plate edges. Shadows are a response to touch, or mark the one element that truly floats.
+The system uses soft, green-tinted ambient shadows with tonal layering. White cards lift gently from the pale ground, and tinted tiles carry the same soft lift. Stronger shadows are reserved for hover, floating confirmation and landing showcase objects.
 
 ### Shadow Vocabulary
-- **Plate Lift** (`box-shadow: 0 3px 10px rgb(18 61 51 / .2)`): Hover on a tappable plate.
-- **Floating Notice** (`box-shadow: 0 4px 14px rgb(18 61 51 / .28)`): The payment confirmation above the tab bar.
-- **Settle Flash** (`box-shadow: 0 0 0 7px #e2b13c`, fading to none over 700ms): The plate that just changed after a payment.
+- **Card Rest** (`box-shadow: 0 1px 2px rgb(13 74 56 / .05), 0 6px 18px rgb(13 74 56 / .06)`): Cards, tiles, lists, panels and room cards.
+- **Room Hover** (`box-shadow: 0 8px 22px rgb(13 74 56 / .13)`): Hover on a tappable room card.
+- **Floating Notice** (`box-shadow: 0 6px 20px rgb(13 74 56 / .25)`): The payment confirmation with Undo.
+- **Showcase** (`box-shadow: 0 16px 40px rgb(0 43 35 / .1)`): Landing product and email previews.
+- **Sample Phone** (`box-shadow: 0 24px 50px rgb(0 43 35 / .32)`): The landing hero phone only.
+- **Settle Ring** (`box-shadow: 0 0 0 7px rgb(52 179 111 / .55)`, fading to none over 700ms): The room card that just received a payment. Removed under reduced motion.
 
 ### Named Rules
-**The Painted Metal Rule.** Plates carry no shadow at rest. If a plate needs more emphasis, change its form.
+**The Soft Light Rule.** Shadows stay diffuse and green-tinted. Emphasis on a live rent surface comes from status color and words before a bigger shadow.
 
 ## Shapes
 
-Corners are slightly softened, like cut enamel signs (6px) on plates, buttons, fields, panels and notices. Number tags are tighter (3px), the progress bar is gently rounded (4px), and only property tabs are full pills (20px).
+Corners are friendly and consistent: 14px on cards and tiles, 10px on buttons, fields and notices, 8px on due tabs, 6px on number tags, 18px on landing showcase frames, 20px on chips, and full circles for icon wells and avatars.
 
-Edge style is the system's signature. Solid, heavy brass, dashed and dotted strokes each carry a meaning, so they are never decoration.
+Edges carry meaning on room cards. Overdue and due today use a solid colored edge, and both part-paid and vacant rooms use a dashed edge. Part paid keeps a white fill and states the balance left. Vacant is transparent with no shadow and says Vacant.
 
 ### Named Rules
-**The Plate Form Rule.** Overdue is a solid red plate. Due today is a 4px brass edge. Part paid is a dashed edge. Paid is a muted plate with a check. Vacant is a transparent plate with a dotted edge. Each state must stay identifiable without color, and always carries its status in words.
+**The Status In Words Rule.** Every rent state is written out on the card or row. Color and edge reinforce the words and never replace them.
 
 ## Components
 
 ### Buttons
-Sturdy and plain, with a confident 2px frame.
-- **Shape:** Softened corners (6px), 48px tall, 700 weight.
-- **Primary:** Bottle Green with Enamel White text (8px 18px).
-- **Hover / Focus:** Lifts to the lighter green, with a 3px green outline offset by 2px on focus. Pending buttons fade to 60% and name the action in progress.
-- **Secondary:** Plate White with a 2px green frame and green text, washing to Settled Green on hover.
-- **Destructive:** Plate White with a 2px ink frame and ink text. Never red.
-- **Small:** 40px tall for actions within a row or section heading.
-- **Text:** Bold underlined green, or ink for destructive actions, at a 40px target.
+Solid, friendly and easy to hit.
+- **Shape:** Gently rounded (10px), 48px tall, weight 700.
+- **Primary:** Deep Ledger Green with white text (8px 20px).
+- **Hover / Focus:** Primary lifts to Lifted Green. Focus uses a 3px Focus Green outline offset by 2px, or amber on dark green. Press moves down 1px, and pending buttons fade to 60%.
+- **Secondary:** White with a 1.5px Lifted Green outline and green text, washing to mint on hover. Mark Paid uses this style.
+- **Destructive:** White with a 1.5px ink outline and ink text. Never red.
+- **Small:** 44px tall for row and page-header actions.
+- **Text:** Bold underlined green, or ink for destructive actions, at a 44px target.
 
 ### Chips
-- **Style:** Property tabs are white pills with a hairline outline, 40px tall, scrolling sideways on phones.
-- **State:** The selected tab fills with Bottle Green and takes Enamel White text.
+- **Style:** Property chips are white 40px pills with a hairline outline, scrolling sideways on phones.
+- **State:** The selected chip fills with Deep Ledger Green and takes white text.
 
 ### Cards / Containers
-- **Corner Style:** Softened (6px).
-- **Background:** Plate White on Board Ground.
-- **Shadow Strategy:** None at rest, per the Painted Metal Rule.
-- **Border:** 1px Hairline Sage. Lists divide rows with the same line.
-- **Internal Padding:** 16px on panels, 12px 14px on list rows.
-- **Tenant Card:** A full green plate, or red when overdue, carrying the number tag, name and balance at Figure size.
+- **Corner Style:** Softly rounded (14px).
+- **Background:** Card White on Pale Mint Ground.
+- **Shadow Strategy:** Card Rest.
+- **Border:** 1px Hairline.
+- **Internal Padding:** 16px on cards and panels, 13px 16px on list rows.
+- **Tenant Card:** A full green card, or red when overdue, carrying the room number, name and balance at Figure size.
 
 ### Inputs / Fields
-- **Style:** Plate White, 1px stroke, 6px corners, 48px tall, with the label above and hint below.
-- **Focus:** The stroke turns Bottle Green, which carries the focus state, with a supplementary 2px brass halo.
-- **Choice:** Paired options use large 52px segmented tiles with a 2px edge. The selected tile fills green.
-- **Error:** A white notice with a 2px ink edge and an alert icon, stated in words.
+- **Style:** White, 1px Control Edge stroke, 10px corners, 48px tall, with the label above and hint below.
+- **Focus:** The stroke turns Focus Green with a 3px Soft Mint halo.
+- **Choice:** Paired options are 52px tiles with a 1.5px edge. The selected tile fills green.
+- **Error:** A white notice with a 1.5px ink edge and an alert icon, stated in words.
 
 ### Navigation
-- **Phone:** A white bottom bar of four icon-over-label tabs, 62px tall. The active tab turns green with a 3px bar along its top edge.
-- **Desktop:** A green rail with the brass wordmark. Items are 44px rows, and the active item becomes an enamel plate with green text.
+- **Phone:** A white bottom bar of four icon-over-label tabs, 64px tall. The active tab turns green and bold with a 3px bar along its top edge.
+- **Desktop:** A 232px pine gradient sidebar with the light logo. Items are 44px rows, and the active item fills with Lifted Green.
 
-### Room Plate
-The signature component and the primary action. A tappable plate, at least 132px tall, stacks a brass number tag, optional property, tenant name, amount and a status line pinned to the bottom. Pressing scales it to 98%. After a payment it settles with a brass flash over 700ms, and the flash is removed under reduced motion.
+### Summary Tile
+A tinted card with a circular icon, a tabular amount, a label and, from 720px, a supporting count. Collected is mint, Due Today amber, Overdue red and Total Expected slate.
 
-### Board Header
-Bottle Green, full width. It holds the wordmark, the brass month, the amount still to collect at Display size, the collected sentence and an 8px brass progress bar.
+### Rent Due List
+The daily work surface. Three tabs show Due Today, Overdue and Upcoming with counts. Each row has an initials avatar, the person and room, the balance, the status in words and, for people with Full access, a Mark Paid action. On phones the action spans the full row width.
+
+### Collection Summary
+A 124px donut with the percent collected in its center, paired with a legend that states Collected, Pending and Overdue as exact amounts.
+
+### Room Card
+A tappable card, at least 136px tall, stacks the room number, optional property, tenant name, amount and a status line pinned to the bottom. Pressing scales it to 98%. After a payment it settles with a green ring.
 
 ### Reminder Email
-The email carries the plate language in table markup: same colors, 6px corners, heavy today edge and dashed part-paid edge. Each card states room, tenant, balance and status in words, and people with Full access get a single Mark paid action that opens a confirmation page.
+A deliberately plain message: white background, Arial, a 520px column, thin dividers and underlined text links, with no color blocks or large buttons so it does not resemble scam mail. Each row names the tenant, room, balance and status in words. Mark paid links open a confirmation page.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** show every rent state through plate form and words as well as color.
-- **Do** sort rent views by urgency, with overdue first.
-- **Do** use tabular numerals for every rupee figure and room number.
-- **Do** set text on brass in Board Ink.
-- **Do** keep main actions and fields at 48px and give new tap targets at least 40px.
-- **Do** give any new control boundary at least 3:1 contrast against its surface, for daylight legibility.
-- **Do** honor reduced motion by removing the settle flash and transitions.
+- **Do** put who owes what first on every screen that deals with rent.
+- **Do** write every rent state in words as well as color.
+- **Do** use tabular numerals for live rupee figures and room numbers.
+- **Do** keep main actions and fields at 48px and row actions at 44px.
+- **Do** give control boundaries at least 3:1 contrast against their surface.
+- **Do** use amber focus rings on dark green surfaces.
+- **Do** keep reminder emails in Arial with a plain, link-based layout.
+- **Do** honor reduced motion by removing the settle ring and transitions.
 
 ### Don't:
-- **Don't** use Signal Red for errors, destructive actions, or anything except overdue rent.
-- **Don't** set words in brass on white or Board Ground.
-- **Don't** add shadows to plates at rest.
-- **Don't** reuse dashed or dotted edges decoratively, because they mean part paid and vacant.
-- **Don't** lead the rent board with summary cards over a table.
+- **Don't** use red for errors, destructive actions or anything except overdue money.
+- **Don't** set words in Due Amber.
 - **Don't** introduce a second typeface into the interface.
+- **Don't** use dashed room edges for anything except part-paid and vacant states.
+- **Don't** carry the landing's tilted phone or Mint Disc into the logged-in app.
+- **Don't** add label lines above headings. The landing's audience pill is a single owner-pinned exception, not a reusable pattern.
+- **Don't** show invented customers, testimonials or usage figures. Product previews must be labeled as sample data.

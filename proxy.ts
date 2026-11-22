@@ -27,11 +27,11 @@ export async function proxy(request: NextRequest) {
 
   // Verifies the signed login locally, so each click skips a trip to the auth server.
   const { data } = await supabase.auth.getClaims();
-  const isPublic = PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  const isPublic = pathname === "/" || PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 
   if (!data?.claims && !isPublic) {
     const login = new URL("/login", request.url);
-    if (pathname !== "/") login.searchParams.set("next", pathname + search);
+    login.searchParams.set("next", pathname + search);
     return NextResponse.redirect(login);
   }
   return response;

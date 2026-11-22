@@ -131,5 +131,17 @@ export async function getBoard(propertyId?: string) {
   const end = monthEnd(today);
   const toCollect = active.filter((t) => t.next_due <= end).reduce((sum, t) => sum + balanceOf(t), 0);
   const collected = monthPayments.reduce((sum, p) => sum + p.amount, 0);
-  return { today, plates: [...occupied, ...vacant] as Plate[], toCollect, collected };
+  const group = (...statuses: Status[]) => {
+    const rows = occupied.filter((p) => statuses.includes(p.status));
+    return { rows, count: rows.length, amount: rows.reduce((sum, p) => sum + balanceOf(p.tenant), 0) };
+  };
+  const summary = {
+    overdue: group("overdue"),
+    today: group("today"),
+    upcoming: group("soon", "part", "upcoming"),
+    paymentCount: monthPayments.length,
+    // Matches Total Expected: rent due by month end, plus anyone already paid this month.
+    expectedTenantCount: occupied.filter((p) => p.next_due <= end || monthPayments.some((m) => m.tenant_id === p.tenant.id)).length,
+  };
+  return { today, plates: [...occupied, ...vacant] as Plate[], toCollect, collected, summary };
 }

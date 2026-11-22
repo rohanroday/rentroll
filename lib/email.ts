@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { balanceOf, compareStatus, daysUntil, rupees, statusText, type Status } from "./rent";
+import { balanceOf, compareStatus, formatDate, rupees, statusText, type Status } from "./rent";
 
 export const siteUrl = () => (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
 
@@ -12,9 +12,15 @@ export async function sendEmail(to: string, subject: string, html: string, text:
     console.log(`[email not sent: Gmail settings missing] subject="${subject}"\n${text}`);
     return;
   }
-  await nodemailer
-    .createTransport({ service: "gmail", auth: { user, pass } })
-    .sendMail({ from: { name: "RentRoll", address: user }, to, subject, html, text });
+  await nodemailer.createTransport({ service: "gmail", auth: { user, pass } }).sendMail({
+    from: { name: "RentRoll", address: user },
+    replyTo: user,
+    to,
+    subject,
+    html,
+    text,
+    headers: { "Auto-Submitted": "auto-generated" },
+  });
 }
 
 export const escapeHtml = (value: string) =>
@@ -31,85 +37,82 @@ export type ReminderRow = {
   status: Status;
 };
 
-const COLORS: Partial<Record<Status, { bg: string; fg: string; edge: string }>> = {
-  overdue: { bg: "#B92B19", fg: "#FFFFFF", edge: "#B92B19" },
-  today: { bg: "#FFFFFF", fg: "#10231E", edge: "#E2B13C" },
-  soon: { bg: "#FFFFFF", fg: "#10231E", edge: "#123D33" },
-  part: { bg: "#FFFFFF", fg: "#10231E", edge: "#123D33" },
+const lowerFirst = (value: string) => value.charAt(0).toLowerCase() + value.slice(1);
+
+// A plain, readable layout: heavy colour blocks and big buttons are common in scam mail.
+const page = (accountName: string, intro: string, body: string) => {
+  const name = escapeHtml(accountName);
+  return `<!doctype html><html lang="en"><body style="margin:0;padding:0;background:#ffffff;color:#10231E;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding:20px 16px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px">
+<tr><td><p style="margin:0 0 4px;font-size:18px;font-weight:700">${name}</p><p style="margin:0 0 16px">${intro}</p></td></tr>
+${body}
+<tr><td style="padding-top:20px;border-top:1px solid #C3D3CA;font-size:13px;color:#3F5850">You're receiving this because your email is on the RentRoll team for ${name}. Questions? Reply to this email.</td></tr>
+</table></td></tr></table></body></html>`;
 };
 
 export function reminderSubject(rows: ReminderRow[], today: string) {
   const first = rows[0];
-  const lead =
-    first.status === "overdue"
-      ? `${first.name} is ${-daysUntil(first.next_due, today)} days late`
-      : first.status === "today"
-        ? `${first.name} is due today`
-        : `${first.name}: ${statusText(first.status, first.next_due, today).toLowerCase()}`;
-  return rows.length > 1 ? `Rent: ${lead}, +${rows.length - 1} more` : `Rent: ${lead}`;
+  const lead = `${first.name}, Room ${first.room}: rent ${lowerFirst(statusText(first.status, first.next_due, today))}`;
+  return rows.length > 1 ? `${lead} and ${rows.length - 1} more` : lead;
 }
 
 export function reminderEmail(rawRows: ReminderRow[], accountName: string, today: string, canEdit: boolean) {
   const rows = [...rawRows].sort(compareStatus);
   const total = rows.reduce((sum, r) => sum + balanceOf(r), 0);
   const site = siteUrl();
+  const count = rows.length === 1 ? "1 room needs" : `${rows.length} rooms need`;
+  const intro = `Today's rent update: ${count} attention, ${rupees(total)} in total.`;
 
-  const cards = rows
+  const list = rows
     .map((r) => {
-      const c = COLORS[r.status] ?? COLORS.soon!;
+      const late = r.status === "overdue";
       const link = `${site}/pay/${r.id}?due=${r.next_due}&from=email`;
-      const dashed = r.status === "part" ? "dashed" : "solid";
-      const width = r.status === "today" ? 4 : 2;
       const action = canEdit
-        ? `<a href="${link}" style="display:inline-block;margin-top:10px;padding:10px 16px;background:${r.status === "overdue" ? "#FFFFFF" : "#123D33"};color:${r.status === "overdue" ? "#B92B19" : "#FFFFFF"};font-weight:700;text-decoration:none;border-radius:6px">Mark paid</a>`
+        ? `<br><a href="${link}" style="color:#005536;font-weight:700">Mark paid</a>`
         : "";
-      return `<tr><td style="padding:0 0 10px"><div style="background:${c.bg};color:${c.fg};border:${width}px ${dashed} ${c.edge};border-radius:6px;padding:12px 14px">
-        <div style="font-size:14px;font-weight:700">Room ${escapeHtml(r.room)} &middot; ${escapeHtml(r.property)}</div>
-        <div style="font-size:20px;font-weight:700;margin-top:2px">${escapeHtml(r.name)}</div>
-        <div style="font-size:16px;margin-top:2px">${rupees(balanceOf(r))} &middot; <strong>${statusText(r.status, r.next_due, today)}</strong></div>
-        ${action}</div></td></tr>`;
+      return `<tr><td style="padding:12px 0;border-top:1px solid #C3D3CA">
+<strong>${escapeHtml(r.name)}</strong> &middot; Room ${escapeHtml(r.room)}, ${escapeHtml(r.property)}<br>
+${rupees(balanceOf(r))} &middot; <strong style="color:${late ? "#B92B19" : "#10231E"}">${escapeHtml(statusText(r.status, r.next_due, today))}</strong>${action}
+</td></tr>`;
     })
     .join("");
 
-  const html = `<!doctype html><html><body style="margin:0;background:#EEF3EF;font-family:Arial,Helvetica,sans-serif;color:#10231E">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px">
-  <tr><td style="background:#123D33;color:#F3F7F3;padding:18px;border-radius:6px 6px 0 0">
-    <div style="font-weight:700">RentRoll &middot; ${escapeHtml(accountName)}</div>
-    <div style="font-size:14px;margin-top:14px">Needs attention</div>
-    <div style="font-size:32px;font-weight:700">${rupees(total)}</div>
-  </td></tr><tr><td style="height:12px"></td></tr>${cards}
-  <tr><td style="font-size:13px;padding-top:4px"><a href="${site}/rooms" style="color:#123D33;font-weight:700">Open all rooms</a></td></tr>
-  </table></td></tr></table></body></html>`;
-
+  const open = `<tr><td style="padding:4px 0 20px"><a href="${site}/rooms" style="color:#005536;font-weight:700">Open all rooms</a></td></tr>`;
   const text = [
-    `RentRoll: ${accountName}`,
-    `Needs attention: ${rupees(total)}`,
+    accountName,
+    intro,
     "",
     ...rows.map(
       (r) =>
-        `Room ${r.room}, ${r.name}: ${rupees(balanceOf(r))}, ${statusText(r.status, r.next_due, today)}` +
+        `${r.name}, Room ${r.room}, ${r.property}: ${rupees(balanceOf(r))}, ${statusText(r.status, r.next_due, today)}` +
         (canEdit ? `\nMark paid: ${site}/pay/${r.id}?due=${r.next_due}&from=email` : ""),
     ),
+    "",
+    `Open all rooms: ${site}/rooms`,
+    "",
+    `You're receiving this because your email is on the RentRoll team for ${accountName}. Questions? Reply to this email.`,
   ].join("\n");
 
-  return { subject: reminderSubject(rows, today), html, text };
+  return { subject: reminderSubject(rows, today), html: page(accountName, intro, list + open), text };
 }
 
-export function allClearEmail(accountName: string) {
+export function allClearEmail(accountName: string, today: string) {
   const site = siteUrl();
+  const intro = `No rent is due in the next 3 days, as of ${formatDate(today)}.`;
   return {
-    subject: "Rent: all clear this week",
-    html: `<!doctype html><html><body style="font-family:Arial,Helvetica,sans-serif;color:#10231E;padding:16px"><p><strong>${escapeHtml(accountName)}</strong> has no rent due in the next 3 days.</p><p><a href="${site}/rooms" style="color:#123D33;font-weight:700">Open all rooms</a></p></body></html>`,
-    text: `${accountName} has no rent due in the next 3 days.\n${site}/rooms`,
+    subject: `${accountName}: no rent due this week`,
+    html: page(accountName, intro, `<tr><td style="padding:0 0 20px"><a href="${site}/rooms" style="color:#005536;font-weight:700">Open all rooms</a></td></tr>`),
+    text: `${accountName}\n${intro}\n\nOpen all rooms: ${site}/rooms\n\nYou're receiving this because your email is on the RentRoll team for ${accountName}. Questions? Reply to this email.`,
   };
 }
 
 export function inviteEmail(accountName: string, role: "full" | "view", link: string) {
   const access = role === "full" ? "Full access" : "View only";
+  const intro = `You've been invited to help manage rent for ${escapeHtml(accountName)} with ${access}.`;
   return {
-    subject: `Join ${accountName} on RentRoll`,
-    html: `<!doctype html><html><body style="font-family:Arial,Helvetica,sans-serif;color:#10231E;padding:16px"><p>You've been invited to <strong>${escapeHtml(accountName)}</strong> on RentRoll with <strong>${access}</strong>.</p><p><a href="${link}" style="display:inline-block;padding:12px 18px;background:#123D33;color:#fff;font-weight:700;text-decoration:none;border-radius:6px">Accept invite</a></p><p style="font-size:13px">This link works for 7 days and only with this email address.</p></body></html>`,
-    text: `You've been invited to ${accountName} on RentRoll with ${access}.\nAccept: ${link}\nThis link works for 7 days and only with this email address.`,
+    subject: `Invitation to ${accountName} on RentRoll`,
+    html: page(accountName, intro, `<tr><td style="padding:0 0 20px"><a href="${link}" style="color:#005536;font-weight:700">Accept invite</a><br><span style="font-size:14px;color:#3F5850">This link works for 7 days and only with this email address.</span></td></tr>`),
+    text: `You've been invited to help manage rent for ${accountName} with ${access}.\nAccept invite: ${link}\nThis link works for 7 days and only with this email address.`,
   };
 }

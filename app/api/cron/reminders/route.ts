@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
       if (alreadySent.has(`${account.id}:${member.user_id}`)) continue;
       const message = rows.length
         ? reminderEmail(rows, account.name, today, member.role === "full")
-        : allClearEmail(account.name);
+        : allClearEmail(account.name, today);
 
       // Logged first so a retry can never send the same morning's email twice.
       const { error } = await admin

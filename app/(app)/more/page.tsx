@@ -2,14 +2,14 @@ import { addProperty, signOut } from "@/app/actions";
 import { ActionForm, Field, Submit } from "@/components/ui";
 import { getContext, getProperties } from "@/lib/data";
 
-export const metadata = { title: "More · RentRoll" };
+export const metadata = { title: "Settings · RentRoll" };
 
 export default async function More() {
   const { user, canEdit } = await getContext();
   const properties = await getProperties();
   return (
     <div className="content narrow stack">
-      <div className="page-head" style={{ marginBottom: -8 }}><h1>More</h1></div>
+      <div className="page-head" style={{ marginBottom: -8 }}><h1>Settings</h1></div>
 
       <section className="stack-sm">
         <h2>Buildings</h2>

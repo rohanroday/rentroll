@@ -1,18 +1,11 @@
 export default function Loading() {
   return (
-    <div role="status" aria-label="Loading">
-      <div className="board-head">
-        <div className="board-head-in">
-          <div className="skeleton skeleton-on-green" style={{ width: 110, height: 20 }} />
-          <div className="skeleton skeleton-on-green" style={{ width: 190, height: 42, marginTop: 28 }} />
-          <div className="skeleton skeleton-on-green" style={{ height: 8, marginTop: 20 }} />
-        </div>
+    <div className="content" role="status" aria-label="Loading">
+      <div className="skeleton" style={{ width: 200, height: 32, marginBottom: 20 }} />
+      <div className="kpis">
+        {Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton skeleton-kpi" />)}
       </div>
-      <div className="content">
-        <div className="plates">
-          {Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton skeleton-plate" />)}
-        </div>
-      </div>
+      <div className="skeleton" style={{ height: 240, marginTop: 16 }} />
     </div>
   );
 }

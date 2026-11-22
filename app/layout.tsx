@@ -1,19 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Hind } from "next/font/google";
+import { Figtree } from "next/font/google";
 import "./globals.css";
 
-const hind = Hind({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-hind" });
+const figtree = Figtree({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "RentRoll",
-  description: "Know whose rent is due and record payments in a few taps.",
+  title: "RentRoll: never miss a rent payment",
+  description: "Track rent, see who's due, record payments and get daily email reminders. Made for Indian landlords and PG owners.",
 };
 
-export const viewport: Viewport = { themeColor: "#123D33", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#083d36", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" className={hind.variable}>
+    <html lang="en-IN" className={figtree.variable}>
       <body>{children}</body>
     </html>
   );
