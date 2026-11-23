@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { moveOut } from "@/app/actions";
 import { Icon } from "@/components/icons";
 import { PaymentRow } from "@/components/payment-row";
+import { TenantEmails } from "@/components/tenant-emails";
 import { ActionForm, Submit } from "@/components/ui";
 import { getContext, type Payment, type Tenant } from "@/lib/data";
 import { balanceOf, daysUntil, formatDate, rupees, statusOf, statusText, todayIST } from "@/lib/rent";
@@ -81,6 +82,16 @@ export default async function TenantPage({ params }: PageProps<"/tenants/[id]">)
           <p className="notice notice-info">No payments recorded yet.</p>
         )}
       </section>
+
+      {canEdit && active && (
+        <TenantEmails
+          id={tenant.id}
+          name={tenant.name}
+          email={tenant.email}
+          enabled={tenant.reminders_enabled}
+          optedOut={!!tenant.reminders_opted_out_at}
+        />
+      )}
 
       {canEdit && active && (
         <section className="panel stack-sm">

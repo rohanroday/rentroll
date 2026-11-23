@@ -1,0 +1,26 @@
+.approvals { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; padding: 16px; background: var(--amber-bg); border: 1px solid var(--amber); border-radius: var(--radius); scroll-margin-top: 72px; }
+.approvals .muted { color: var(--amber-ink); }
+.approvals .list { margin-top: 6px; }
+.approvals .list .muted { color: var(--ink-2); overflow-wrap: anywhere; }
+.approval-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.approval-actions .btn { flex: 1 1 130px; }
+.approval-confirm { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: .9375rem; font-weight: 600; }
+.approvals .notice { margin-top: 10px; }
+
+.tenant-page { min-height: 100dvh; background: var(--ground); }
+.tenant-brand { display: flex; align-items: center; gap: 8px; min-height: 58px; padding: 0 16px; background: var(--white); border-bottom: 1px solid var(--line); color: var(--green); font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; }
+.tenant-body { width: min(520px, 100%); margin: 0 auto; padding: 18px 16px 32px; display: flex; flex-direction: column; gap: 16px; }
+.upi-box { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--mint-2); border-radius: var(--radius); text-align: center; }
+.upi-box img, .upi-qr-empty { width: 220px; height: 220px; padding: 6px; background: var(--white); border-radius: var(--radius-sm); }
+.upi-qr-empty { display: flex; align-items: center; justify-content: center; color: var(--ink-2); font-size: .875rem; }
+.upi-payee { font-size: .9375rem; overflow-wrap: anywhere; }
+.upi-id { display: flex; align-items: center; justify-content: center; gap: 4px; max-width: 100%; }
+.upi-id code { min-width: 0; font-family: inherit; font-weight: 700; overflow-wrap: anywhere; }
+.upi-id .text-btn { flex: none; }
+.upi-open { margin-top: 2px; }
+.cash-note { display: flex; align-items: flex-start; gap: 8px; }
+.cash-note svg { flex: none; margin-top: 2px; }
+.segmented input:disabled + span { color: var(--ink-2); background: var(--slate-bg); border-color: var(--line); cursor: not-allowed; }
+.tenant-optout { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 6px; text-align: center; }
+
+@media (hover: hover) and (pointer: fine) { .upi-open { display: none; } }

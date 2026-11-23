@@ -20,11 +20,12 @@ const STEPS: { icon: IconName; title: string; text: string }[] = [
 ];
 
 const FAQS = [
-  { q: "Will my tenants get emails?", a: "No. Reminders go only to the owner and the team members the owner invites." },
+  { q: "Will my tenants get emails?", a: "Only if you turn it on for them. They get a rent reminder with a private link to pay, and they can stop the emails at any time." },
+  { q: "How do tenants pay?", a: "By UPI QR or cash. They report the payment on their private page, and it counts as paid only after you approve it." },
   { q: "Do I need to install an app?", a: "No. RentRoll runs in the browser on your phone or laptop." },
   { q: "Can I record part payments?", a: "Yes. RentRoll tracks the balance left and moves the due date only when the full rent is paid." },
   { q: "Can a family member help me?", a: "Yes. Invite them with Full access, or with View only if they should see everything but change nothing." },
-  { q: "Does RentRoll collect rent from tenants?", a: "No. Tenants pay you as they do today, through UPI, bank transfer or cash, and you record it in RentRoll." },
+  { q: "Does RentRoll hold my rent money?", a: "No. Tenants pay you directly, and RentRoll only keeps track of what was paid." },
 ];
 
 const SAMPLE = [

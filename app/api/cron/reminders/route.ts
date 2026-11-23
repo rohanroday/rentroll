@@ -1,11 +1,17 @@
-import { timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
-import { allClearEmail, reminderEmail, sendEmail, type ReminderRow } from "@/lib/email";
+import {
+  allClearEmail, reminderEmail, sendEmail, siteUrl, tenantReminderEmail,
+  type ReminderRow, type TenantStage,
+} from "@/lib/email";
 import { daysUntil, statusOf, todayIST } from "@/lib/rent";
 import { createAdminClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
+
+// Protects the sending Gmail account's daily limit.
+const MAX_TENANT_EMAILS = 150;
 
 const authorized = (request: NextRequest) => {
   const secret = process.env.CRON_SECRET;
@@ -22,17 +28,19 @@ export async function GET(request: NextRequest) {
   const today = todayIST();
   const isSunday = new Date(`${today}T00:00:00Z`).getUTCDay() === 0;
 
-  const [accounts, members, tenants, logs] = await Promise.all([
+  const [accounts, members, tenants, logs, tenantLogs, pending] = await Promise.all([
     admin.from("accounts").select("id, name"),
     admin.from("members").select("account_id, user_id, email, role"),
     admin
       .from("tenants")
-      .select("id, account_id, name, rent, paid_so_far, next_due, rooms(label, properties(name))")
+      .select("id, account_id, name, email, reminders_enabled, rent, paid_so_far, next_due, rooms(label, properties(name))")
       .is("ended_on", null),
     admin.from("reminder_log").select("account_id, user_id").eq("sent_on", today),
+    admin.from("tenant_reminder_log").select("tenant_id, due, stage"),
+    admin.from("payment_requests").select("tenant_id").eq("status", "pending"),
   ]);
-  const failure = accounts.error ?? members.error ?? tenants.error ?? logs.error;
-  if (failure || !accounts.data || !members.data || !tenants.data || !logs.data) {
+  const failure = accounts.error ?? members.error ?? tenants.error ?? logs.error ?? tenantLogs.error ?? pending.error;
+  if (failure || !accounts.data || !members.data || !tenants.data || !logs.data || !tenantLogs.data || !pending.data) {
     return NextResponse.json({ error: failure?.message ?? "No data returned" }, { status: 500 });
   }
 
@@ -82,5 +90,53 @@ export async function GET(request: NextRequest) {
       }
     }
   }
-  return NextResponse.json({ sent, failed }, { status: failed ? 500 : 200 });
+
+  // Tenant emails: only for tenants the owner turned on, at most once per stage of each rent cycle.
+  const sentStages = new Set(tenantLogs.data.map((l) => `${l.tenant_id}:${l.due}:${l.stage}`));
+  const waiting = new Set(pending.data.map((p) => p.tenant_id));
+  let tenantSent = 0;
+
+  for (const t of tenants.data) {
+    if (tenantSent >= MAX_TENANT_EMAILS) break;
+    if (!t.reminders_enabled || !t.email || waiting.has(t.id)) continue;
+    const days = daysUntil(t.next_due, today);
+    if (days > 3) continue;
+    const stage: TenantStage = days <= -3 ? "late" : days <= 0 ? "today" : "before";
+    if (sentStages.has(`${t.id}:${t.next_due}:${stage}`)) continue;
+
+    const { error: logError } = await admin.from("tenant_reminder_log").insert({ tenant_id: t.id, due: t.next_due, stage });
+    if (logError) continue;
+    const token = randomBytes(32).toString("base64url");
+    const tokenHash = createHash("sha256").update(token).digest("hex");
+    const undoLog = () => admin.from("tenant_reminder_log").delete().match({ tenant_id: t.id, due: t.next_due, stage });
+    const { error: linkError } = await admin
+      .from("payment_links")
+      .insert({ account_id: t.account_id, tenant_id: t.id, token_hash: tokenHash, due: t.next_due });
+    if (linkError) {
+      failed += 1;
+      await undoLog();
+      continue;
+    }
+    const room = t.rooms as unknown as { label: string; properties: { name: string } };
+    const message = tenantReminderEmail({
+      tenantName: t.name,
+      room: room.label,
+      property: room.properties.name,
+      amount: t.rent - t.paid_so_far,
+      due: t.next_due,
+      stage,
+      link: `${siteUrl()}/t/${token}`,
+    });
+    try {
+      await sendEmail(t.email, message.subject, message.html, message.text);
+      tenantSent += 1;
+    } catch (e) {
+      failed += 1;
+      console.error(`Tenant reminder failed for tenant ${t.id}:`, e);
+      await admin.from("payment_links").delete().eq("token_hash", tokenHash);
+      await undoLog();
+    }
+  }
+
+  return NextResponse.json({ sent, tenantSent, failed }, { status: failed ? 500 : 200 });
 }

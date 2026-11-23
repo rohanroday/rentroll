@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Approvals, type Approval } from "@/components/approvals";
 import { CollectionSummary, DueList, Kpi, kpiNotes, type DueTab } from "@/components/dashboard";
 import { Icon } from "@/components/icons";
 import { RoomPlate } from "@/components/plate";
@@ -27,6 +28,19 @@ export default async function Rooms({ searchParams }: PageProps<"/rooms">) {
       ? await supabase.from("payments").select("tenant_id").eq("id", recorded).eq("account_id", accountId).is("voided_at", null).maybeSingle()
       : { data: null };
   const paidPlate = payment ? plates.find((p) => p.kind === "tenant" && p.tenant.id === payment.tenant_id) : undefined;
+  const { data: requests } = await supabase
+    .from("payment_requests")
+    .select("id, tenant_id, amount, method, utr, created_at")
+    .eq("account_id", accountId)
+    .eq("status", "pending")
+    .order("created_at");
+  const whenText = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit", timeZone: "Asia/Kolkata" });
+  const approvals: Approval[] = (requests ?? []).flatMap((r) => {
+    const plate = plates.find((p) => p.kind === "tenant" && p.tenant.id === r.tenant_id);
+    return plate?.kind === "tenant"
+      ? [{ id: r.id, name: plate.tenant.name, room: plate.label, amount: r.amount, method: r.method, utr: r.utr, when: whenText.format(new Date(r.created_at)) }]
+      : [];
+  });
   const addHref = selected ? `/rooms/new?property=${encodeURIComponent(selected.name)}` : "/rooms/new";
 
   const fallback: DueTab = summary.overdue.count ? "overdue" : summary.today.count ? "today" : "upcoming";
@@ -57,6 +71,8 @@ export default async function Rooms({ searchParams }: PageProps<"/rooms">) {
           ))}
         </div>
       )}
+
+      <Approvals items={approvals} canEdit={canEdit} />
 
       {plates.length ? (
         <>

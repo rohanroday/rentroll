@@ -199,9 +199,18 @@ export async function updateTenant(id: string, _: FormState, form: FormData): Pr
   if (!parsed.success) return { error: parsed.error.issues[0].message };
   const { supabase } = await getContext();
   const { phone, email, ...rest } = parsed.data;
+  // Consent belongs to one email address, so a changed address turns tenant emails off.
+  const { data: current } = await supabase.from("tenants").select("email").eq("id", id).maybeSingle();
+  const emailChanged = (current?.email ?? "").toLowerCase() !== email.toLowerCase();
   const { data, error } = await supabase
     .from("tenants")
-    .update({ ...rest, phone: phone || null, email: email || null, due_day: Number(rest.next_due.slice(8)) })
+    .update({
+      ...rest,
+      phone: phone || null,
+      email: email || null,
+      due_day: Number(rest.next_due.slice(8)),
+      ...(emailChanged ? { reminders_enabled: false } : {}),
+    })
     .eq("id", id)
     .select("id");
   if (error) {
