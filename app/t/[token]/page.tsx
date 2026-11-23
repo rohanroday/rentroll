@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { createHash } from "node:crypto";
-import { setTenantEmails } from "@/app/tenant-actions";
 import { Icon } from "@/components/icons";
 import { TenantPay } from "@/components/tenant-pay";
 import { formatDate, rupees } from "@/lib/rent";
@@ -22,8 +21,6 @@ type Info = {
   balance: number;
   upi_id: string | null;
   upi_name: string;
-  emails_on: boolean;
-  opted_out: boolean;
   request_status: "pending" | "approved" | "rejected" | "undone" | null;
   request_amount: number | null;
   request_method: "upi" | "cash" | null;
@@ -100,11 +97,6 @@ export default async function TenantPayment({ params }: PageProps<"/t/[token]">)
           <TenantPay token={token} balance={info.balance} room={info.room} upiId={info.upi_id} upiName={info.upi_name} />
         </section>
       )}
-
-      <form action={setTenantEmails.bind(null, token, info.opted_out)} className="tenant-optout">
-        <span className="muted">{info.opted_out ? "Rent emails are off." : "Don't want these reminders?"}</span>
-        <button className="text-btn">{info.opted_out ? "Turn rent emails on" : "Stop rent emails"}</button>
-      </form>
     </Shell>
   );
 }

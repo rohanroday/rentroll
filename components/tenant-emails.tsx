@@ -3,16 +3,14 @@
 import { setTenantReminders } from "@/app/tenant-actions";
 import { ActionForm, Submit } from "./ui";
 
-export function TenantEmails({ id, name, email, enabled, optedOut }: { id: string; name: string; email: string | null; enabled: boolean; optedOut: boolean }) {
+export function TenantEmails({ id, name, email, enabled }: { id: string; name: string; email: string | null; enabled: boolean }) {
   let body;
   if (!email) {
     body = <p className="muted">Add {name}&apos;s email in Edit details to send rent reminders.</p>;
-  } else if (optedOut) {
-    body = <p className="muted">{name} turned off rent emails. Only they can turn them back on, from their rent link.</p>;
   } else if (enabled) {
     body = (
       <>
-        <p className="muted">{name} gets a rent reminder and a private payment link at {email}.</p>
+        <p className="muted">{name} gets a daily reminder from 5 days before rent is due until it&apos;s paid, at {email}.</p>
         <ActionForm action={setTenantReminders.bind(null, id)}>
           <input type="hidden" name="on" value="no" />
           <Submit variant="secondary" pending="Updating…">Turn off tenant emails</Submit>
@@ -22,7 +20,7 @@ export function TenantEmails({ id, name, email, enabled, optedOut }: { id: strin
   } else {
     body = (
       <>
-        <p className="muted">Send {name} a reminder 5 days before rent is due, on the due date, and 3 days after if unpaid, with a private link to pay and report it.</p>
+        <p className="muted">Send {name} a reminder every morning from 5 days before rent is due until it&apos;s paid, with a private link to pay and report it.</p>
         <ActionForm action={setTenantReminders.bind(null, id)}>
           <input type="hidden" name="on" value="yes" />
           <label className="check-row">

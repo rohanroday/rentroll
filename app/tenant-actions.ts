@@ -117,12 +117,6 @@ export async function submitTenantPayment(token: string, _: FormState, form: For
   return { ok: "Sent to your landlord for approval." };
 }
 
-export async function setTenantEmails(token: string, on: boolean) {
-  const admin = createAdminClient();
-  await admin.rpc("tenant_set_reminders", { p_hash: hashOf(token), p_on: on });
-  revalidatePath(`/t/${token}`);
-}
-
 // ===== Owner =====
 export async function approveRequest(id: string): Promise<FormState> {
   const { supabase } = await getContext();
@@ -167,7 +161,7 @@ export async function setTenantReminders(id: string, _: FormState, form: FormDat
   const { supabase } = await getContext();
   const { data, error } = await supabase.from("tenants").update({ reminders_enabled: on }).eq("id", id).select("id");
   if (error) {
-    return { error: error.code === "23514" ? "This tenant needs an email address and must not have opted out." : MESSAGES.not_allowed };
+    return { error: error.code === "23514" ? "Add this tenant's email address first." : MESSAGES.not_allowed };
   }
   if (!data.length) return { error: MESSAGES.not_allowed };
   revalidatePath(`/tenants/${id}`);

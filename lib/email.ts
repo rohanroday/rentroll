@@ -135,7 +135,7 @@ export function tenantReminderEmail(input: {
   const { tenantName, room, property, amount, due, stage, link } = input;
   const when = stage === "today" ? "is due today" : stage === "late" ? `was due on ${formatDate(due)}` : `is due on ${formatDate(due)}`;
   const line = `Hi ${tenantName}, your rent of ${rupees(amount)} for Room ${room} ${when}.`;
-  const footer = "You're receiving this because your landlord uses RentRoll for rent reminders. To stop these emails, open the link above and choose Stop rent emails.";
+  const footer = "You're receiving this because your landlord uses RentRoll for rent reminders. To stop these emails, please contact your landlord.";
   return {
     subject: `Rent reminder: Room ${room}, ${rupees(amount)} ${stage === "today" ? "due today" : stage === "late" ? "overdue" : `due ${formatDate(due, true)}`}`,
     html: page(property, escapeHtml(line), linkRow(link, "Pay rent or tell your landlord you've paid"), footer),

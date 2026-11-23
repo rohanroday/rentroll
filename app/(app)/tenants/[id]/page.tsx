@@ -89,7 +89,6 @@ export default async function TenantPage({ params }: PageProps<"/tenants/[id]">)
           name={tenant.name}
           email={tenant.email}
           enabled={tenant.reminders_enabled}
-          optedOut={!!tenant.reminders_opted_out_at}
         />
       )}
 

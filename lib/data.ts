@@ -17,7 +17,6 @@ export type Tenant = {
   paid_so_far: number;
   ended_on: string | null;
   reminders_enabled: boolean;
-  reminders_opted_out_at: string | null;
 };
 
 export type Payment = {

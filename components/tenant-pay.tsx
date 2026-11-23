@@ -4,6 +4,7 @@ import QRCode from "qrcode";
 import { useEffect, useState } from "react";
 import { submitTenantPayment } from "@/app/tenant-actions";
 import { rupees } from "@/lib/rent";
+import { upiAppLink, upiLink, upiQuery, type UpiApp } from "@/lib/upi";
 import { Icon } from "./icons";
 import { ActionForm, Field, Submit } from "./ui";
 
@@ -15,8 +16,11 @@ type Props = {
   upiName: string;
 };
 
-const upiLink = (id: string, name: string, amount: number, room: string) =>
-  `upi://pay?pa=${encodeURIComponent(id)}&pn=${encodeURIComponent(name)}&am=${amount}.00&cu=INR&tn=${encodeURIComponent(`Rent Room ${room}`)}`;
+const APP_BUTTONS: { app: UpiApp; label: string }[] = [
+  { app: "gpay", label: "Google Pay" },
+  { app: "phonepe", label: "PhonePe" },
+  { app: "paytm", label: "Paytm" },
+];
 
 export function TenantPay({ token, balance, room, upiId, upiName }: Props) {
   const [method, setMethod] = useState<"upi" | "cash">(upiId ? "upi" : "cash");
@@ -26,7 +30,8 @@ export function TenantPay({ token, balance, room, upiId, upiName }: Props) {
 
   const amount = Number(amountText.replace(/[,₹\s]/g, ""));
   const valid = Number.isInteger(amount) && amount >= 1 && amount <= balance;
-  const link = upiId && valid ? upiLink(upiId, upiName, amount, room) : "";
+  const query = upiId && valid ? upiQuery(upiId, upiName, amount, room) : "";
+  const link = query ? upiLink(query) : "";
 
   useEffect(() => {
     let live = true;
@@ -80,7 +85,26 @@ export function TenantPay({ token, balance, room, upiId, upiName }: Props) {
               <code>{upiId}</code>
               <button type="button" className="text-btn" onClick={copy}>{copied ? "Copied" : "Copy"}</button>
             </div>
-            {link && <a className="btn btn-secondary btn-block upi-open" href={link}>Open UPI app</a>}
+            {link && (
+              <div className="upi-apps">
+                <p className="field-label">Pay with</p>
+                <div className="upi-app-grid">
+                  {APP_BUTTONS.map(({ app, label }) => (
+                    <a
+                      key={app}
+                      className="btn btn-secondary btn-small"
+                      href={link}
+                      data-upi-app={app}
+                      onClick={(e) => { e.currentTarget.href = upiAppLink(app, query, navigator.userAgent, window.location.href); }}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                  <a className="btn btn-secondary btn-small" href={link} data-upi-app="other">Other UPI app</a>
+                </div>
+                <p className="field-hint">If nothing opens, scan the QR or copy the UPI ID in your app.</p>
+              </div>
+            )}
             <p className="field-hint">Check the name in your UPI app before you pay.</p>
           </section>
           <Field label="UPI transaction number (UTR)" hint="12 digits, shown in your UPI app after paying.">

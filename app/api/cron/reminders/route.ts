@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
       .select("id, account_id, name, email, reminders_enabled, rent, paid_so_far, next_due, rooms(label, properties(name))")
       .is("ended_on", null),
     admin.from("reminder_log").select("account_id, user_id").eq("sent_on", today),
-    admin.from("tenant_reminder_log").select("tenant_id, due, stage"),
+    admin.from("tenant_reminder_log").select("tenant_id, due").eq("sent_on", today),
     admin.from("payment_requests").select("tenant_id").eq("status", "pending"),
   ]);
   const failure = accounts.error ?? members.error ?? tenants.error ?? logs.error ?? tenantLogs.error ?? pending.error;
@@ -91,8 +91,8 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Tenant emails: only for tenants the owner turned on, at most once per stage of each rent cycle.
-  const sentStages = new Set(tenantLogs.data.map((l) => `${l.tenant_id}:${l.due}:${l.stage}`));
+  // Tenant emails: only for tenants the owner turned on, once a day until the rent is paid.
+  const sentToday = new Set(tenantLogs.data.map((l) => `${l.tenant_id}:${l.due}`));
   const waiting = new Set(pending.data.map((p) => p.tenant_id));
   let tenantSent = 0;
 
@@ -101,13 +101,16 @@ export async function GET(request: NextRequest) {
     if (!t.reminders_enabled || !t.email || waiting.has(t.id)) continue;
     const stage = tenantReminderStage(daysUntil(t.next_due, today));
     if (!stage) continue;
-    if (sentStages.has(`${t.id}:${t.next_due}:${stage}`)) continue;
+    if (sentToday.has(`${t.id}:${t.next_due}`)) continue;
 
-    const { error: logError } = await admin.from("tenant_reminder_log").insert({ tenant_id: t.id, due: t.next_due, stage });
+    // The database allows one row per tenant, rent cycle and day, so a repeated job can't send twice.
+    const { error: logError } = await admin
+      .from("tenant_reminder_log")
+      .insert({ tenant_id: t.id, due: t.next_due, stage, sent_on: today });
     if (logError) continue;
     const token = randomBytes(32).toString("base64url");
     const tokenHash = createHash("sha256").update(token).digest("hex");
-    const undoLog = () => admin.from("tenant_reminder_log").delete().match({ tenant_id: t.id, due: t.next_due, stage });
+    const undoLog = () => admin.from("tenant_reminder_log").delete().match({ tenant_id: t.id, due: t.next_due, sent_on: today });
     const { error: linkError } = await admin
       .from("payment_links")
       .insert({ account_id: t.account_id, tenant_id: t.id, token_hash: tokenHash, due: t.next_due });

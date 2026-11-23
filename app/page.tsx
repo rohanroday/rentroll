@@ -20,7 +20,7 @@ const STEPS: { icon: IconName; title: string; text: string }[] = [
 ];
 
 const FAQS = [
-  { q: "Will my tenants get emails?", a: "Only if you turn it on for them. They get a rent reminder with a private link to pay, and they can stop the emails at any time." },
+  { q: "Will my tenants get emails?", a: "Only if you turn it on for them. They get a rent reminder with a private link to pay, and you can turn the emails off at any time." },
   { q: "How do tenants pay?", a: "By UPI QR or cash. They report the payment on their private page, and it counts as paid only after you approve it." },
   { q: "Do I need to install an app?", a: "No. RentRoll runs in the browser on your phone or laptop." },
   { q: "Can I record part payments?", a: "Yes. RentRoll tracks the balance left and moves the due date only when the full rent is paid." },
