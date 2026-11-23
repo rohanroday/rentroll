@@ -4,7 +4,7 @@ import {
   allClearEmail, reminderEmail, sendEmail, siteUrl, tenantReminderEmail,
   type ReminderRow,
 } from "@/lib/email";
-import { daysUntil, statusOf, tenantReminderStage, todayIST } from "@/lib/rent";
+import { daysUntil, REMINDER_DAYS, statusOf, tenantReminderStage, todayIST } from "@/lib/rent";
 import { createAdminClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
 
   for (const account of accounts.data) {
     const rows: ReminderRow[] = tenants.data
-      .filter((t) => t.account_id === account.id && daysUntil(t.next_due, today) <= 3)
+      .filter((t) => t.account_id === account.id && daysUntil(t.next_due, today) <= REMINDER_DAYS)
       .map((t) => {
         const room = t.rooms as unknown as { label: string; properties: { name: string } };
         return {

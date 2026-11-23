@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { balanceOf, compareStatus, formatDate, rupees, statusText, type Status } from "./rent";
+import { balanceOf, compareStatus, formatDate, REMINDER_DAYS, rupees, statusText, type Status } from "./rent";
 
 export const siteUrl = () => (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
 
@@ -100,7 +100,7 @@ ${rupees(balanceOf(r))} &middot; <strong style="color:${late ? "#B92B19" : "#102
 
 export function allClearEmail(accountName: string, today: string) {
   const site = siteUrl();
-  const intro = `No rent is due in the next 3 days, as of ${formatDate(today)}.`;
+  const intro = `No rent is due in the next ${REMINDER_DAYS} days, as of ${formatDate(today)}.`;
   return {
     subject: `${accountName}: no rent due this week`,
     html: page(accountName, intro, `<tr><td style="padding:0 0 20px"><a href="${site}/rooms" style="color:#005536;font-weight:700">Open all rooms</a></td></tr>`),

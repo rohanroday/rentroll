@@ -24,11 +24,12 @@ export function monthEnd(today: string) {
   return new Date(Date.UTC(year, month, 0)).toISOString().slice(0, 10);
 }
 
-export const TENANT_REMINDER_DAYS = 5;
+// Owners and tenants both start getting reminders this many days before rent is due.
+export const REMINDER_DAYS = 5;
 
 // Which tenant email applies, given the days until rent is due (negative means late).
 export function tenantReminderStage(days: number): "before" | "today" | "late" | null {
-  if (days > TENANT_REMINDER_DAYS) return null;
+  if (days > REMINDER_DAYS) return null;
   if (days < 0) return "late";
   return days === 0 ? "today" : "before";
 }
@@ -40,7 +41,7 @@ export function statusOf(t: TenantLike, today: string, paidThisMonth: ReadonlySe
   if (days < 0) return "overdue";
   if (days === 0) return "today";
   if (t.paid_so_far > 0) return "part";
-  if (days <= 3) return "soon";
+  if (days <= REMINDER_DAYS) return "soon";
   return paidThisMonth.has(t.id) && t.next_due > monthEnd(today) ? "paid" : "upcoming";
 }
 
