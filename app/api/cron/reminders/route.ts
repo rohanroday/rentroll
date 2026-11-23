@@ -2,9 +2,9 @@ import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
 import {
   allClearEmail, reminderEmail, sendEmail, siteUrl, tenantReminderEmail,
-  type ReminderRow, type TenantStage,
+  type ReminderRow,
 } from "@/lib/email";
-import { daysUntil, statusOf, todayIST } from "@/lib/rent";
+import { daysUntil, statusOf, tenantReminderStage, todayIST } from "@/lib/rent";
 import { createAdminClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -99,9 +99,8 @@ export async function GET(request: NextRequest) {
   for (const t of tenants.data) {
     if (tenantSent >= MAX_TENANT_EMAILS) break;
     if (!t.reminders_enabled || !t.email || waiting.has(t.id)) continue;
-    const days = daysUntil(t.next_due, today);
-    if (days > 3) continue;
-    const stage: TenantStage = days <= -3 ? "late" : days <= 0 ? "today" : "before";
+    const stage = tenantReminderStage(daysUntil(t.next_due, today));
+    if (!stage) continue;
     if (sentStages.has(`${t.id}:${t.next_due}:${stage}`)) continue;
 
     const { error: logError } = await admin.from("tenant_reminder_log").insert({ tenant_id: t.id, due: t.next_due, stage });

@@ -22,7 +22,7 @@ export function TenantEmails({ id, name, email, enabled, optedOut }: { id: strin
   } else {
     body = (
       <>
-        <p className="muted">Send {name} a reminder from 3 days before rent is due, with a private link to pay and report it.</p>
+        <p className="muted">Send {name} a reminder 5 days before rent is due, on the due date, and 3 days after if unpaid, with a private link to pay and report it.</p>
         <ActionForm action={setTenantReminders.bind(null, id)}>
           <input type="hidden" name="on" value="yes" />
           <label className="check-row">

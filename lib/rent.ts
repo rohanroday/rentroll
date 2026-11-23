@@ -24,7 +24,16 @@ export function monthEnd(today: string) {
   return new Date(Date.UTC(year, month, 0)).toISOString().slice(0, 10);
 }
 
-export const balanceOf = (t: Pick<TenantLike, "rent" | "paid_so_far">) => t.rent - t.paid_so_far;
+export const TENANT_REMINDER_DAYS = 5;
+
+// Which tenant email applies, given the days until rent is due (negative means late).
+export function tenantReminderStage(days: number): "before" | "today" | "late" | null {
+  if (days > TENANT_REMINDER_DAYS) return null;
+  if (days <= -3) return "late";
+  return days <= 0 ? "today" : "before";
+}
+
+export const balanceOf =(t: Pick<TenantLike, "rent" | "paid_so_far">) => t.rent - t.paid_so_far;
 
 export function statusOf(t: TenantLike, today: string, paidThisMonth: ReadonlySet<string>): Status {
   const days = daysUntil(t.next_due, today);
